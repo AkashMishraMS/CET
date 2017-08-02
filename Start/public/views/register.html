@@ -1,0 +1,71 @@
+<html>
+  <body>
+<style>
+.glyphicon-user{
+font-size:250px;
+color:black;
+}
+</style>
+<ng-form name="Rform">
+<div class="container text-center">
+<h1>Register</h1>
+<fieldset>
+<div class="row">
+<div class="col-sm-6 text-center">
+<i class="glyphicon glyphicon-user"></i>
+</div>
+<div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="username">Enter User Name</label>
+    <div class="controls">
+    <input ng-model="user.username" class="form-control" ng-required="true"/><br/>
+    </div>
+  </div>
+
+<div class="col-sm-18">
+    <div class="form-group">
+    <label class="control-label" for="password">Enter Email</label>
+    <div class="controls">
+  <input type="email" ng-model="user.email" class="form-control" ng-required="true"/><br/>
+</div>
+</div>
+</div>
+
+  <div class="col-sm-18">
+    <div class="form-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+  <input type="password" ng-model="user.password" class="form-control" ng-required="true"/><br/>
+</div>
+</div>
+</div>
+
+<div class="col-sm-18">
+  <div class="form-group">
+  <label class="control-label" for="password">Re-enter Password</label>
+  <div class="controls">
+<input ng-model="user.password2" type="password"class="form-control" ng-required="true"/><br/>
+</div>
+</div>
+</div>
+
+<div class="col-sm-18">
+  <div class="form-group">
+    <label class="control-label" for="file">Attachments</label>
+    <div class="controls">
+<span ng-controller = "myCtrl">
+   <input type = "file" file-model = "myFile" ng-required="true"/>
+   <button ng-click = "uploadFile()" ng-required="true">Upload File</button>
+</span>
+</div>
+  </div>
+</div>
+
+<a href="/login" ng-click="register(user)" ng-disabled="Rform.$invalid" class="btn btn-success" style="margin-top:20px;">Register</a></button>
+</div>
+</tbody>
+</table>
+
+</div>
+</div>
+</html>

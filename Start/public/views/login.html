@@ -1,0 +1,38 @@
+<html>
+  <body>
+<style>
+.glyphicon-user{
+font-size:250px;
+color:black;
+}
+</style>
+<ng-form name="loginform">
+<div class="container text-center">
+<h1>Login</h1>
+<fieldset>
+<div class="row">
+<div class="col-sm-6 text-center">
+<i class="glyphicon glyphicon-user"></i>
+</div>
+<div class="col-sm-6">
+  <div class="form-group">
+    <label class="control-label" for="username">User Name</label>
+    <div class="controls">
+    <input ng-model="user.username" class="form-control" ng-required="true"/><br/>
+    </div>
+  </div>
+  <div class="col-sm-18">
+    <div class="form-group">
+    <label class="control-label" for="password">Password</label>
+    <div class="controls">
+  <input type="password" ng-model="user.password" class="form-control" ng-required="true"/><br/>
+</div>
+</div>
+</div>
+<button ng-click="login(user)" ng-disabled="loginform.$invalid" class="btn btn-primary">Login</button><br/>
+  <a href="/register">Signup</a><br/>
+</div>
+</tbody>
+</table>
+
+</div>

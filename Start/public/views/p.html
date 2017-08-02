@@ -1,0 +1,222 @@
+<!Doctype html>
+<html>
+    <body>
+	<ng-form name="Pform">
+<link rel="stylesheet" href="css/style1.css">
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"></script>
+
+<span ng-controller="LogoutController" style="float:inherit;padding-top:20px;">
+<a href="/logout" ng-click='logout()' class="btn btn-danger fa fa-sign-out">Logout</a>
+  </span>
+
+<div data-ng-app="profileApp">
+	<div class="pf_cont" data-ng-controller="profileformController as profileForm">
+		<div class="profileForm"   ng-class="{'profileFormShow':profileForm.visible==true}">
+		<div class="pf_controls">
+			<h2>Profile Form</h2> 
+			<button data-ng-click="profileForm.profileFormClose()">X</button>
+		</div>
+		<form ng-submit="pf_form.$valid && profileForm.addProfile(profileArray)" ng-model="pf_form" name="pf_form"  novalidate>
+			<div class="pf_error" ng-show="pf_form.$submitted && !pf_form.$valid" >
+				Error: Please check all mandatory fields are filled out correctly
+			</div>
+			<div class="pf_item">
+				<label>Firstname<span>*</span>:</label>
+			<span>
+				<input type="text" data-ng-model="profileForm.profile.firstName" name="firstName" required="required" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.firstName.$dirty) && !pf_form.firstName.$valid)}" />
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.firstName.$dirty) && !pf_form.firstName.$valid)">
+					Please enter a First name.
+				</span>
+		</div>
+			<div class="pf_item">
+			<label>Lastname:</label>
+			<span>
+				<input type="text" data-ng-model="profileForm.profile.lastName" />
+			</span>
+		</div>
+			<div class="pf_item">
+			<label>Gender<span>*</span>:</label>
+			<span>
+				
+				<label for="genderMale" >Male
+				<input type="radio" id="genderMale" name="gender" data-ng-model="profileForm.profile.gender" value="Male" ng-required="!profileForm.profile.gender" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)}"  /></label>
+				<label for="genderFemale" >Female
+				<input type="radio" id="genderFemale" name="gender" data-ng-model="profileForm.profile.gender" value="Female" ng-required="!profileForm.profile.gender" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)}" /></label>
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)">
+					Please Select a Gender. 
+				</span>
+		</div>
+
+			<div class="pf_item">
+			<label>Date of Birth<span>*</span>:</label>
+			<span>
+				<input type="date" data-ng-model="profileForm.profile.dateBirth" placeholder="yyyy-MM-dd" min="1950-01-01" max="2010-12-31" name="dateBirth" required class="{'pristine-invalid':((pf_form.$submitted || pf_form.dateBirth.$dirty) && (!pf_form.dateBirth.$valid))}" />
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.dateBirth.$dirty) && (!pf_form.dateBirth.$valid))">
+					Please enter a valid Date.
+				</span>
+		</div>
+			<!--<div class="pf_item">
+			<label>Image URL:</label>
+			<span>
+				<input type="url" data-ng-model="profileForm.profile.jpg" name="img" />
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.img.$dirty) && (profileForm.profile.img.indexOf('.png') <= 1 && profileForm.profile.img.indexOf('.jpg') <= 1 && profileForm.profile.img.indexOf('.jpeg') <= 1))">
+					Please use a ".png",".jpg" or ".jpeg"
+				</span>
+		</div>-->
+			<div class="pf_item">
+			<label>Email<span>*</span>:</label>
+			<span>
+				<input type="email" name="email" data-ng-model="profileForm.profile.email" ng-class="{'pristine-invalid':(pf_form.$submitted || pf_form.email.$dirty) && (pf_form.email.$error.required || pf_form.email.$error.email)}"  required="required" />
+			</span>
+				<span class="pf_item_error" ng-show="(pf_form.$submitted || pf_form.email.$dirty) && (pf_form.email.$error.required || pf_form.email.$error.email)">
+					Please enter a valid email address.
+				</span>
+		</div>
+
+		<div class="pf_item">
+			<label>Cover Letter<span>*</span>:</label>
+			<span>
+				<textarea data-ng-model="profileForm.profile.address" name="address" required="required" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.address.$dirty) && !pf_form.address.$valid)}" ></textarea>
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.address.$dirty) && !pf_form.address.$valid)">
+					Please enter an Address.
+				</span>
+		</div>
+			<div class="pf_item">
+			<label>Website URL:</label>
+			<span>
+				<input type="url" data-ng-model="profileForm.profile.website"  />
+			</span>
+		</div>
+			<div class="pf_item">
+			<label>Address<span>*</span>:</label>
+			<span>
+				<textarea data-ng-model="profileForm.profile.address" name="address" required="required" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.address.$dirty) && !pf_form.address.$valid)}" ></textarea>
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.address.$dirty) && !pf_form.address.$valid)">
+					Please enter an Address.
+				</span>
+		</div>
+		<div ng-controller = "myCtrl">
+   Attachment:<input type = "file" file-model = "myFile" ng-required="true"/>
+   <button ng-click = "uploadFile()" ng-required="true" class="btn btn-success" >Upload File</button>
+</div>
+			<!--<div class="pf_item">
+			<label>Twitter<span>*</span>:</label>
+			<span>
+				<input type="text" name="twitter" data-ng-model="profileForm.profile.twitter" required="required" placeholder="@" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.twitter.$dirty) && !pf_form.twitter.$valid)}" />
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.twitter.$dirty) && !pf_form.twitter.$valid)">
+					Please enter a Twitter handler.
+				</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.twitter.$dirty) && profileForm.profile.twitter.indexOf('@') > -1)">
+					You don't need the @.
+				</span>
+		</div>-->
+			<div class="pf_item">
+			<label>Do you like to working ?</label>
+			<span>
+				
+				<label for="genderMale" >Yes
+				<input type="radio" id="genderMale" name="gender" data-ng-model="profileForm.profile.work" value="yes" ng-required="!profileForm.profile.work" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)}"  /></label>
+				<label for="genderFemale" >No
+				<input type="radio" id="genderFemale" name="gender" data-ng-model="profileForm.profile.work" value="No" ng-required="!profileForm.profile.work" ng-class="{'pristine-invalid':((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)}" /></label>
+			</span>
+				<span class="pf_item_error" ng-show="((pf_form.$submitted || pf_form.gender.$dirty) && pf_form.gender.$error.required)">
+					Please show your interest  
+				</span>
+		</div>
+
+			<div class="pf_item">
+			<label>LinkedIn:</label>
+			<span>
+				<input type="url" data-ng-model="profileForm.profile.linkedIn" />
+			</span>
+		</div>
+			<!--<div class="pf_item">
+			<label>Google+:</label>
+			<span>
+				<input type="url" data-ng-model="profileForm.profile.googlePlus" />
+			</span>
+		</div>-->
+					
+		<input type="submit" ng-disabled="Pform.$invalid" class="pf_submit" value="Submit Profile" />
+			
+		</form>
+	</div>
+		
+		<a href="" ng-click="profileForm.pfVisible()">
+			<span>Click here To Create Profile</span>
+		</a>
+	</div>
+	<div class="pa_control">
+	<div class="details_control" data-ng-controller="detailsController as details">
+		<h1>Welcome to the Profile Collection</h1>
+		<div class="details_info">
+			<h1><strong>See All Profiles</strong></h1>
+		</div>
+	</div>
+	<div class="profileArray" data-ng-controller="profilearrayController as profileArray">
+			<div class="pa_item" ng-repeat="profile in profileArray.profiles">
+				<div class="pa_item_header">
+					<img ng-src="{{profile.img}}" alt="{{profile.firstName + ' ' + profile.lastName}}" />
+					<h2>{{profile.firstName + " " + profile.lastName}}</h2>
+					<button class="pa_show"  ng-click="profile.paVisible();" ng-class="{'slideToggle':profile.visible==true}" ></button>
+				</div>
+				<div class="pa_item_cont" ng-class="{'pa_item_cont_open':profile.visible==true}" >
+					<div class="pa_cell">
+						<label>Gender</label>
+						<span>{{profile.gender}}</span>
+					</div>
+
+					<div class="pa_cell">
+						<label>Interested to work </label>
+						<span>{{profile.work}}</span>
+					</div>
+
+					<div class="pa_cell">
+						<label>D.O.B</label>
+						<span>{{profile.dateBirth | date:'dd/MM/yyyy'}}</span>
+					</div>
+
+					<div class="pa_row">
+						<label>Address</label>
+						<span>{{profile.address}}</span>
+					</div>
+					<div class="pa_cell">
+						<label>Email</label>
+						<span><a ng-href="mailto:{{profile.email}}">{{profile.email}}</a></span>
+					</div>
+					<!--<div class="pa_cell">
+						<label>Website</label>
+						<span><a ng-href="{{profile.website}}" target="_blank">{{profile.website}}</a></span>
+					</div>
+					<div class="pa_cell">
+						<label>Twiter</label>
+						<span><a ng-href="https://twitter.com/search?q={{profile.twitter}}&src=typd" target="_blank">@{{profile.twitter}}</a></span>
+					</div>
+					<div class="pa_cell">
+						<label>Facebook</label>
+						<span><a ng-href="{{profile.facebook}}" target="_blank">{{profile.facebook}}</a></span>
+					</div>-->
+					<div class="pa_cell">
+						<label>LinkedIn</label>
+						<span><a ng-href="{{profile.linkedIn}}" target="_blank">{{profile.linkedIn}}</a></span>
+					</div>
+					<!--<div class="pa_cell">
+						<label>Google+</label>
+						<span><a ng-href="{{profile.googlePlus}}" target="_blank">{{profile.googlePlus}}</a></span>
+					</div>-->
+					
+				</div>
+		</div>
+	</div>
+	</div>
+</div>
+
+</body>
+</html>

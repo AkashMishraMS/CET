@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- <meta http-equiv="refresh" content="5" > -->
+    <base href="/">
+
+    <title>Profile.com</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+<link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css">
+<script
+  src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script
+  src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+  <!--<link rel="stylesheet" href="css/style.css">-->
+
+    <!-- custom styles -->
+
+    <!-- JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular-route.js"></script>
+    <!-- <script src = "http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.14/angular-filter.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/angular-ui/0.4.0/angular-ui.min.js"></script>
+
+
+    <!-- ANGULAR CUSTOM -->
+    <script src="js/controllers/MainCtrl.js"></script>
+    <script src="js/appRoutes.js"></script>
+    <script src="js/app.js"></script>
+    <script src="js/controllers/registerController.js"></script>
+    <script src="js/controllers/loginController.js"></script>
+    <script src="js/controllers/logoutCtrl.js"></script>
+      <script src="js/controllers/upctrl.js"></script>
+      <script src="js/controllers/p.js"></script>
+ </head>
+<body ng-app="sampleApp">
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <a class="navbar-brand" href="/">Profile.com</a>
+    </div>
+     <ul class="nav navbar-nav navbar-right">
+ <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      <li>  <a href="/register"><span class="glyphicon glyphicon-log-in"></span>Register</a></li>
+     </ul>
+    </nav>    
+        <!-- ANGULAR DYNAMIC CONTENT -->
+        <div ng-view></div>         
+</body>
+</html>
